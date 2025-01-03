@@ -5,6 +5,7 @@ from sklearn.datasets import load_diabetes
 import time
 from datetime import datetime
 import logging
+import uuid
  
 # Создаём бесконечный цикл для отправки сообщений в очередь
 while True:
@@ -26,7 +27,7 @@ while True:
             while True:
                 # Формируем случайный индекс строки
                 random_row = np.random.randint(0, X.shape[0]-1)
-                message_id = datetime.timestamp(datetime.now())
+                message_id = str(uuid.uuid4())
                 message_y_true_body = {
                     'id': message_id,
                     'body': y[random_row]

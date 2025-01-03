@@ -24,8 +24,18 @@ services:
   metric:
     build:
       context: ./metric
+    volumes:
+      - ./logs:/logs
     restart: always
     depends_on:
       - rabbitmq
       - features
       - model
+  plot:
+    build: 
+      context: ./plot
+    volumes:
+      - ./logs:/logs
+    restart: always
+    depends_on:
+      - metric
